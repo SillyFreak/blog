@@ -1,10 +1,4 @@
-# Sveltekit template
-
-This is a very opinionated Sveltekit template. It's configured for my personal setup.
-
-```bash
-npx degit SillyFreak/sveltekit-template
-```
+# SillyFreak's Blog
 
 ## Developing
 
