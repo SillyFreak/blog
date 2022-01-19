@@ -13,7 +13,8 @@
 					return c.localeCompare(category, undefined, { sensitivity: 'base' }) === 0;
 				}
 				return post.metadata.categories.filter(compareCategory).length !== 0;
-			});
+			})
+			.reverse();
 
 		return { props: { posts } };
 	}
