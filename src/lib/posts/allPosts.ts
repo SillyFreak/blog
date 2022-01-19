@@ -4,6 +4,7 @@ export type Metadata = {
 	title: string;
 	published: Date;
 	edited: Date | null;
+	categories: string[];
 };
 
 export type PostMetadata = {
