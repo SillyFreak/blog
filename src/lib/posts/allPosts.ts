@@ -16,9 +16,9 @@ export type Post = PostMetadata & {
 };
 
 export default async function allPosts(): Promise<Post[]> {
-	const posts = Object.entries(import.meta.glob('./*.svelte.md'));
-	return Promise.all(
-		posts.map(async ([path, resolver]) => {
+	const postPromises = Object.entries(import.meta.glob('./*.svelte.md'));
+	const posts = await Promise.all(
+		postPromises.map(async ([path, resolver]) => {
 			const post = await resolver();
 
 			const slug = path.slice(2, -10).split('-', 2).pop();
@@ -32,4 +32,6 @@ export default async function allPosts(): Promise<Post[]> {
 			return { slug, metadata, content };
 		}),
 	);
+
+	return posts.sort((a, b) => +a.metadata.published - +b.metadata.published);
 }

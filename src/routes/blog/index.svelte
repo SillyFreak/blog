@@ -4,17 +4,19 @@
 	/** @type {import('@sveltejs/kit').Load} */
 	export async function load({ fetch }) {
 		const response = await fetch('/api/posts.json');
-		const posts = (await response.json()).map((post) => {
-			let {
-				slug,
-				metadata: { published, edited, ...more },
-			} = post;
+		const posts = ((await response.json()) as any[])
+			.map((post) => {
+				let {
+					slug,
+					metadata: { published, edited, ...more },
+				} = post;
 
-			published = new Date(published);
-			edited = edited === null ? null : new Date(edited);
+				published = new Date(published);
+				edited = edited === null ? null : new Date(edited);
 
-			return { slug, metadata: { published, edited, ...more } };
-		});
+				return { slug, metadata: { published, edited, ...more } };
+			})
+			.reverse();
 
 		return { props: { posts } };
 	}
@@ -22,9 +24,6 @@
 
 <script lang="ts">
 	export let posts: PostMetadata[];
-
-	let sortedPosts: PostMetadata[];
-	$: sortedPosts = [...posts].sort((a, b) => +a.metadata.published - +b.metadata.published);
 
 	function postUrl(post: PostMetadata): string {
 		const published = post.metadata.published;
@@ -38,7 +37,7 @@
 </script>
 
 <ul>
-	{#each sortedPosts as post (post.slug)}
+	{#each posts as post (post.slug)}
 		<li>
 			<a href={postUrl(post)}>{post.metadata.title}</a>
 		</li>
