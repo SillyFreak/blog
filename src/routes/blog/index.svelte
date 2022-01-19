@@ -1,0 +1,46 @@
+<script context="module" lang="ts">
+	import type { PostMetadata } from '$lib/posts/allPosts';
+
+	/** @type {import('@sveltejs/kit').Load} */
+	export async function load({ fetch }) {
+		const response = await fetch('/api/posts.json');
+		const posts = (await response.json()).map((post) => {
+			let {
+				slug,
+				metadata: { published, edited, ...more },
+			} = post;
+
+			published = new Date(published);
+			edited = edited === null ? null : new Date(edited);
+
+			return { slug, metadata: { published, edited, ...more } };
+		});
+
+		return { props: { posts } };
+	}
+</script>
+
+<script lang="ts">
+	export let posts: PostMetadata[];
+
+	let sortedPosts: PostMetadata[];
+	$: sortedPosts = [...posts].sort((a, b) => +a.metadata.published - +b.metadata.published);
+
+	function postUrl(post: PostMetadata): string {
+		const published = post.metadata.published;
+		console.log(published);
+		const yyyy = String(published.getUTCFullYear()).padStart(4, '0');
+		const mm = String(published.getUTCMonth() + 1).padStart(2, '0');
+		const dd = String(published.getUTCDate()).padStart(2, '0');
+
+		return `${yyyy}/${mm}/${dd}/${post.slug}/`;
+	}
+</script>
+
+<ul>
+	{#each sortedPosts as post (post.slug)}
+		<li>
+			<a href={postUrl(post)}>{post.metadata.title}</a>
+		</li>
+	{/each}
+</ul>
