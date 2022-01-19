@@ -27,7 +27,6 @@
 
 	function postUrl(post: PostMetadata): string {
 		const published = post.metadata.published;
-		console.log(published);
 		const yyyy = String(published.getUTCFullYear()).padStart(4, '0');
 		const mm = String(published.getUTCMonth() + 1).padStart(2, '0');
 		const dd = String(published.getUTCDate()).padStart(2, '0');
