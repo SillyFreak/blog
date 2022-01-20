@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-802abc47.js",
+    "file": "start-72bdd3e3.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -11,8 +11,9 @@
       "src/routes/__layout.svelte",
       ".svelte-kit/runtime/components/error.svelte",
       "src/routes/index.svelte",
-      "src/routes/categories/[category].svelte",
-      "src/routes/[yyyy]/[mm]/[dd]/[slug].svelte"
+      "src/routes/blog/index.svelte",
+      "src/routes/blog/categories/[category].svelte",
+      "src/routes/blog/[yyyy]/[mm]/[dd]/[slug].svelte"
     ]
   },
   "src/routes/__layout.svelte": {
@@ -37,19 +38,17 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-6b6d094b.js",
+    "file": "pages/index.svelte-03955eaf.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-2338cb50.js",
-      "_allPosts-aba1daa0.js",
-      "_preload-helper-ec9aa979.js"
+      "_vendor-2338cb50.js"
     ]
   },
-  "src/routes/categories/[category].svelte": {
-    "file": "pages/categories/_category_.svelte-90e3cc07.js",
-    "src": "src/routes/categories/[category].svelte",
+  "src/routes/blog/index.svelte": {
+    "file": "pages/blog/index.svelte-859aec12.js",
+    "src": "src/routes/blog/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
@@ -58,9 +57,20 @@
       "_preload-helper-ec9aa979.js"
     ]
   },
-  "src/routes/[yyyy]/[mm]/[dd]/[slug].svelte": {
-    "file": "pages/_yyyy_/_mm_/_dd_/_slug_.svelte-cc39b460.js",
-    "src": "src/routes/[yyyy]/[mm]/[dd]/[slug].svelte",
+  "src/routes/blog/categories/[category].svelte": {
+    "file": "pages/blog/categories/_category_.svelte-7196468c.js",
+    "src": "src/routes/blog/categories/[category].svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-2338cb50.js",
+      "_allPosts-aba1daa0.js",
+      "_preload-helper-ec9aa979.js"
+    ]
+  },
+  "src/routes/blog/[yyyy]/[mm]/[dd]/[slug].svelte": {
+    "file": "pages/blog/_yyyy_/_mm_/_dd_/_slug_.svelte-ca49244b.js",
+    "src": "src/routes/blog/[yyyy]/[mm]/[dd]/[slug].svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
