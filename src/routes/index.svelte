@@ -18,7 +18,7 @@
 <ul>
 	{#each posts as post (post.slug)}
 		<li>
-			<a href={postUrl(post)}>{post.metadata.title}</a>
+			<a href={postUrl(post)} class="font-semibold">{post.metadata.title}</a>
 		</li>
 	{/each}
 </ul>

@@ -33,9 +33,9 @@
 	export let content: typeof SvelteComponent;
 </script>
 
-<h1>{title}</h1>
+<h1 class="text-4xl">{title}</h1>
 
-<p>
+<p class="text-sm italic">
 	Published {published.toLocaleDateString()}
 	{#if edited !== null}- last edited: {edited.toLocaleDateString()}{/if}
 </p>
