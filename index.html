@@ -1,1 +1,48 @@
-<meta http-equiv="refresh" content="0;url=/blog/">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+	<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-16c23858.css">
+	<link rel="modulepreload" href="/_app/start-802abc47.js">
+	<link rel="modulepreload" href="/_app/chunks/vendor-2338cb50.js">
+	<link rel="modulepreload" href="/_app/chunks/preload-helper-ec9aa979.js">
+	<link rel="modulepreload" href="/_app/pages/__layout.svelte-cda4bc66.js">
+	<link rel="modulepreload" href="/_app/pages/index.svelte-6b6d094b.js">
+	<link rel="modulepreload" href="/_app/chunks/allPosts-aba1daa0.js">
+			<script type="module">
+				import { start } from "/_app/start-802abc47.js";
+				start({
+					target: document.querySelector("body"),
+					paths: {"base":"","assets":""},
+					session: {},
+					route: true,
+					spa: false,
+					trailing_slash: "always",
+					hydrate: {
+						status: 200,
+						error: null,
+						nodes: [
+							import("/_app/pages/__layout.svelte-cda4bc66.js"),
+						import("/_app/pages/index.svelte-6b6d094b.js")
+						],
+						url: new URL("http://prerender/"),
+						params: {}
+					}
+				});
+			</script>
+	</head>
+	<body>
+		
+
+
+<ul><li><a href="2022/01/19/another/">Post Two</a>
+		</li><li><a href="2022/01/18/post/">Post One</a>
+		</li></ul>
+
+<script type="application/json" data-type="svelte-data" data-url="/api/posts.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"[{\"slug\":\"post\",\"metadata\":{\"published\":\"2022-01-18T00:00:00.000Z\",\"edited\":null,\"title\":\"Post One\",\"categories\":[\"First\"],\"excerpt\":\"The first Post.\"}},{\"slug\":\"another\",\"metadata\":{\"published\":\"2022-01-19T00:00:00.000Z\",\"edited\":null,\"title\":\"Post Two\",\"categories\":[\"Second\"],\"excerpt\":\"The second Post.\"}}]"}</script>
+	</body>
+</html>
