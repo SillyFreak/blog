@@ -26,10 +26,12 @@
 </script>
 
 <script lang="ts">
-	export let slug: string;
+	// export let slug: string;
 	export let title: string;
 	export let published: Date;
 	export let edited: Date;
+	export let categories: string[];
+	// export let excerpt: string;
 	export let content: typeof SvelteComponent;
 </script>
 
@@ -38,6 +40,12 @@
 <p class="text-sm italic">
 	Published {published.toLocaleDateString()}
 	{#if edited !== null}- last edited: {edited.toLocaleDateString()}{/if}
+</p>
+
+<p class="text-sm">
+	{#each categories as category}
+		<a href="/categories/{category.toLowerCase()}" class="bg-gray-200 px-1 mx-0.5">{category}</a>
+	{/each}
 </p>
 
 <svelte:component this={content} />
