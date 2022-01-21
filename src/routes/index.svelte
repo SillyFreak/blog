@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
-	import type { PostMetadata } from '$lib/posts/allPosts';
-	import { unpackPostMetadata, postUrl } from '$lib/posts/allPosts';
+	import { unpackPostMetadata } from '$lib/posts/allPosts';
 
 	/** @type {import('@sveltejs/kit').Load} */
 	export async function load({ fetch }) {
@@ -12,13 +11,11 @@
 </script>
 
 <script lang="ts">
+	import type { PostMetadata } from '$lib/posts/allPosts';
+
+	import Posts from '$lib/components/Posts.svelte';
+
 	export let posts: PostMetadata[];
 </script>
 
-<ul>
-	{#each posts as post (post.slug)}
-		<li>
-			<a href={postUrl(post)} class="font-semibold">{post.metadata.title}</a>
-		</li>
-	{/each}
-</ul>
+<Posts {posts} />
