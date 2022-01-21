@@ -42,9 +42,9 @@
 	{#if edited !== null}- last edited: {edited.toLocaleDateString()}{/if}
 </p>
 
-<ul class="text-sm list-none flex flex-wrap gap-1">
+<ul class="text-sm m-0 list-none flex flex-wrap gap-1">
 	{#each categories as category}
-		<li>
+		<li class="m-0">
 			<a href="/categories/{category.toLowerCase()}" class="bg-gray-200 px-1">{category}</a>
 		</li>
 	{/each}
