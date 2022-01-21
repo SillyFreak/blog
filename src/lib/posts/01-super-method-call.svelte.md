@@ -1,6 +1,6 @@
 ---
 title: Calling Superclass Methods
-published: 2022-01-18
+published: 2022-01-21
 edited: null
 categories:
   - Java
