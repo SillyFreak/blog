@@ -42,10 +42,12 @@
 	{#if edited !== null}- last edited: {edited.toLocaleDateString()}{/if}
 </p>
 
-<p class="text-sm">
+<ul class="text-sm list-none flex flex-wrap gap-1">
 	{#each categories as category}
-		<a href="/categories/{category.toLowerCase()}" class="bg-gray-200 px-1 mx-0.5">{category}</a>
+		<li>
+			<a href="/categories/{category.toLowerCase()}" class="bg-gray-200 px-1">{category}</a>
+		</li>
 	{/each}
-</p>
+</ul>
 
 <svelte:component this={content} />
