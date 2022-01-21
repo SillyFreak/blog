@@ -55,7 +55,8 @@ export default async function allPosts(): Promise<Post[]> {
 	const postPromises = Object.entries(import.meta.glob('./*.svelte.md'));
 	const posts = await Promise.all(
 		postPromises.map(async ([path, resolver]) => {
-			const slug = path.slice(2, -10).split('-', 2).pop();
+			let slug = path.slice(2, -10);
+			slug = slug.substring(slug.indexOf('-') + 1);
 			const { default: content, metadata } = await resolver();
 			return unpackPost({ slug, metadata, content });
 		}),
