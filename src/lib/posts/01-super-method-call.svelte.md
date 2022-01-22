@@ -1,7 +1,7 @@
 ---
 title: Calling Superclass Methods
 published: 2022-01-21
-edited: null
+edited: 2022-01-22
 categories:
   - Java
 excerpt: A common mistake I see Java beginners make is to call methods like `super.foo()` indiscriminate when subclassing is involved. However, there's a subtle difference between that and regular method calls.
@@ -135,4 +135,5 @@ String s = "" + i;
 
 # Conclusion
 
-The difference between `this.foo();` and `super.foo();` is bigger than it may first seem. Having an accidental `super` method call somewhere will work at first and only make problems when the class hierarchy gets more complex - so it's important to avoid mixing the two up from the start.
+Being able to call `super.foo()` is important, but basically only meant for situations where a class overrides that method `foo`; on *inherited* methods, using `super` is almost always a mistake.
+The difference between `this.foo();` and `super.foo();` is bigger than it may first seem and may lead to surprising behavior later on - so it's important to avoid mixing the two up from the start.
