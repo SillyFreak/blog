@@ -28,6 +28,7 @@
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.4.0",
 		"prismjs": "^1.26.0",
+		"rehype-add-classes": "^1.0.0",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.2.6",
 		"svelte-preprocess": "^4.7.4",

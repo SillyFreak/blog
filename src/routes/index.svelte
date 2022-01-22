@@ -18,6 +18,6 @@
 	export let posts: PostMetadata[];
 </script>
 
-<p>Guess what, this is my blog.</p>
+<p class="plain">Guess what, this is my blog.</p>
 
 <Posts {posts} />

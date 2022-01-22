@@ -35,14 +35,14 @@
 	export let content: typeof SvelteComponent;
 </script>
 
-<h1 class="text-4xl">{title}</h1>
+<h1 class="plain text-4xl">{title}</h1>
 
-<p class="text-sm italic">
+<p class="plain text-sm italic">
 	Published {published.toLocaleDateString()}
 	{#if edited !== null}- last edited: {edited.toLocaleDateString()}{/if}
 </p>
 
-<ul class="text-sm m-0 list-none flex flex-wrap gap-1">
+<ul class="text-sm m-0 flex flex-wrap gap-1">
 	{#each categories as category}
 		<li class="m-0">
 			<a href="/categories/{category.toLowerCase()}" class="bg-gray-200 px-1">{category}</a>
