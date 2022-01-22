@@ -4,7 +4,7 @@ const config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				'mono': ["Consolas","Monaco", "Andale Mono", "Ubuntu Mono", "monospace"],
+				mono: ['Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', 'monospace'],
 			},
 		},
 	},

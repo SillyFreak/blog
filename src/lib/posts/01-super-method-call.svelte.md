@@ -116,14 +116,14 @@ We can roughly read this as (for a more proper understanding, take a look at [st
 
 - Load the `this` object (`aload_0`).
 - On that object, do a regular dynamic method call to `void foo()`.
-	The word "virtual" here refers to the fact that this is implemented by using a [virtual function table](https://en.wikipedia.org/wiki/Virtual_method_table) or vtable.
-	The `#7` here is an index at which the method name `foo` and signature `()V` are stored within the class file.
+  The word "virtual" here refers to the fact that this is implemented by using a [virtual function table](https://en.wikipedia.org/wiki/Virtual_method_table) or vtable.
+  The `#7` here is an index at which the method name `foo` and signature `()V` are stored within the class file.
 - The `this` was "consumed" by that call, so load it again for the second call.
 - On this object, do a "special" method call to that same method.
-	Note how the method is specified as `A.foo:()V`:
-	the class to search for `foo` is compiled into this instruction instead of determined from `this` at runtime.
+  Note how the method is specified as `A.foo:()V`:
+  the class to search for `foo` is compiled into this instruction instead of determined from `this` at runtime.
 - Finally, the method returns to the caller, whoever that was.
-	We don't write that return in Java (for `void` methods), but at the JVM level it's a important part of what a method does.
+  We don't write that return in Java (for `void` methods), but at the JVM level it's a important part of what a method does.
 
 There are other kinds of method calls in the JVM.
 They are not the topic here, but if you're interested, try calling static methods and constructors, or this surprisingly intricate piece of code:
@@ -135,5 +135,5 @@ String s = "" + i;
 
 # Conclusion
 
-Being able to call `super.foo()` is important, but basically only meant for situations where a class overrides that method `foo`; on *inherited* methods, using `super` is almost always a mistake.
+Being able to call `super.foo()` is important, but basically only meant for situations where a class overrides that method `foo`; on _inherited_ methods, using `super` is almost always a mistake.
 The difference between `this.foo();` and `super.foo();` is bigger than it may first seem and may lead to surprising behavior later on - so it's important to avoid mixing the two up from the start.
