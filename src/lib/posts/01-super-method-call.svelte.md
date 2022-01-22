@@ -41,6 +41,7 @@ class FormalMessage extends Message {
 
 This might look alright: when overriding `send`, we need to use `super.send()` to avoid an accidental recursion.
 For consistency, why not also use `super.getReceiver()`?
+Those methods _are_ all defined in the superclass, after all.
 Well, consider this extension:
 
 ```java
