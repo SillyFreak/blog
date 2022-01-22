@@ -123,7 +123,7 @@ We can roughly read this as (for a more proper understanding, take a look at [st
   Note how the method is specified as `A.foo:()V`:
   the class to search for `foo` is compiled into this instruction instead of determined from `this` at runtime.
 - Finally, the method returns to the caller, whoever that was.
-  We don't write that return in Java (for `void` methods), but at the JVM level it's a important part of what a method does.
+  We don't write that return in Java (for `void` methods), but at the JVM level it's an important part of what a method does.
 
 There are other kinds of method calls in the JVM.
 They are not the topic here, but if you're interested, try calling static methods and constructors, or this surprisingly intricate piece of code:
