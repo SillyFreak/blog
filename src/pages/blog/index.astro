@@ -12,7 +12,7 @@ import Header from '$components/Header.astro';
 import '$styles/IndexPostList.css';
 
 const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
 );
 ---
 
@@ -53,7 +53,7 @@ const posts = (await getCollection('blog')).sort(
                     <span class="title">{post.data.title}</span>
                   </h2>
                   <span class="date">
-                    <FormattedDate date={post.data.date} />
+                    <FormattedDate date={post.data.published} />
                   </span>
                 </a>
                 {post.data.tags && <TagList tags={post.data.tags} />}

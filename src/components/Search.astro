@@ -94,9 +94,9 @@
 
       posts = posts.sort(
         sort === 'date'
-          ? (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+          ? (a, b) => b.data.published.valueOf() - a.data.published.valueOf()
           : sort === 'date-asc'
-            ? (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
+            ? (a, b) => a.data.published.valueOf() - b.data.published.valueOf()
             : sort === 'title'
               ? (a, b) => a.data.title.localeCompare(b.data.title)
               : (a, b) => {
