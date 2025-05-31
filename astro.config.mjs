@@ -1,11 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import { typst } from "astro-typst";
+import { typst } from 'astro-typst';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://blog.sillyfreak.space',
+  site: 'https://blog.sillyfreak.space',
   base: '/',
 
   // Whether to prefetch links while hovering.
@@ -18,9 +18,9 @@ export default defineConfig({
     sitemap(),
     typst({
       // Always builds HTML files
-			target: "html",
-			// conditionally build HTML or SVG
-			// target: () => "html",
+      target: 'html',
+      // conditionally build HTML or SVG
+      // target: () => "html",
     }),
   ],
 
@@ -28,11 +28,11 @@ export default defineConfig({
     build: {
       assetsInlineLimit(filePath, content) {
         const KB = 1024;
-        return content.length < (filePath.endsWith(".css") ? 100 * KB : 4 * KB);
+        return content.length < (filePath.endsWith('.css') ? 100 * KB : 4 * KB);
       },
     },
     ssr: {
-      external: ["@myriaddreamin/typst-ts-node-compiler"],
+      external: ['@myriaddreamin/typst-ts-node-compiler'],
     },
   },
 });
