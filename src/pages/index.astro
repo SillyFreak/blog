@@ -44,10 +44,7 @@ const posts = (await getCollection('blog')).sort(
         <ul class="accent block-list posts loading">
           {
             posts.map((post) => (
-              <li
-                data-article-id={post.id}
-                data-article-meta={JSON.stringify(post.data)}
-              >
+              <li data-article-id={post.id} data-article-meta={JSON.stringify(post.data)}>
                 <a class="heading" href={`/${post.id}/`}>
                   <h2>
                     <span class="title">{post.data.title}</span>
@@ -57,14 +54,14 @@ const posts = (await getCollection('blog')).sort(
                   </span>
                 </a>
                 {post.data.tags && <TagList tags={post.data.tags} />}
-                {post.data.description || ""}
+                {post.data.description || ''}
               </li>
             ))
           }
         </ul>
         <script is:inline>
           if (!window.location.search) {
-            document.querySelector(".posts").classList.remove("loading");
+            document.querySelector('.posts').classList.remove('loading');
           }
         </script>
       </section>
