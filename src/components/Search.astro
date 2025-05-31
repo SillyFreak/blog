@@ -1,0 +1,169 @@
+---
+
+---
+
+<style>
+  .search {
+    margin-top: 3em;
+    display: none;
+  }
+  .search.enabled {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .search-box {
+    background-color: var(--main-bg-color);
+    border: 1px solid var(--main-color);
+    border-radius: 4px;
+    color: var(--main-color);
+    padding: 0.3em 0.3em;
+    text-decoration: none;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-right: 0.3em;
+  }
+</style>
+
+<div aria-label="Search" role="search">
+  <div class="search enabled">
+    <div>Search:&nbsp;</div>
+    <input
+      id="search-text"
+      type="text"
+      placeholder="Keywords..."
+      class="search-box"
+      title="Search by keywords"
+      role="searchbox"
+    />
+    <select id="search-sort" class="search-box" title="Sort by">
+      <option value="date" title="Sort by date in descending order">Date</option
+      >
+      <option value="date-asc" title="Sort by date in ascending order"
+        >Date Asc</option
+      >
+      <option value="title" title="Sort by title">Title</option>
+      <option value="tag" title="Sort by tags">Tags</option>
+    </select>
+  </div>
+  <script>
+    import type { CollectionEntry } from "astro:content";
+    type BlogMeta = CollectionEntry<"blog">["data"];
+
+    const searchText = document.querySelector<HTMLInputElement>("#search-text");
+    const searchSort =
+      document.querySelector<HTMLSelectElement>("#search-sort");
+
+    interface SearchItem {
+      element: HTMLLIElement;
+      id: string | null;
+      data: BlogMeta;
+    }
+    let _searchItems: SearchItem[] = undefined!;
+    let searchItems = () => {
+      if (_searchItems === undefined) {
+        _searchItems = Array.from(
+          document.querySelectorAll<HTMLLIElement>(".posts > li")
+        ).map((li) => {
+          const articleId = li.dataset.articleId;
+          const articleMeta = JSON.parse(li.dataset.articleMeta || "{}");
+          if (articleMeta?.date) {
+            articleMeta.date = new Date(articleMeta.date);
+          }
+          return {
+            id: articleId!,
+            data: articleMeta,
+            element: li,
+          };
+        });
+      }
+      return _searchItems;
+    };
+
+    function runSearch(posts: SearchItem[], search?: string, sort?: string) {
+      if (!search) search = undefined;
+      if (!sort) sort = "date";
+      // update the params
+      const params = new URLSearchParams(window.location.search);
+      if (search) {
+        params.set("search", search);
+        const usingSearch = search.toLowerCase();
+        posts = posts.filter((post) => {
+          const { title, description, tags } = post.data;
+          const text = `${title} ${description} ${tags?.join(" ") || ""}`;
+          return text.toLowerCase().includes(usingSearch);
+        });
+      } else {
+        params.delete("search");
+      }
+
+      posts = posts.sort(
+        sort === "date"
+          ? (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+          : sort === "date-asc"
+            ? (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
+            : sort === "title"
+              ? (a, b) => a.data.title.localeCompare(b.data.title)
+              : (a, b) => {
+                  const aTags = a.data.tags || [];
+                  const bTags = b.data.tags || [];
+                  if (aTags.length !== bTags.length) {
+                    return aTags.length - bTags.length;
+                  }
+                  for (let i = 0; i < aTags.length; i++) {
+                    const aTag = aTags[i];
+                    const bTag = bTags[i];
+                    if (aTag !== bTag) {
+                      return aTag.localeCompare(bTag);
+                    }
+                  }
+                  return 0;
+                }
+      );
+      if (sort !== "date") {
+        params.set("sort", sort);
+      } else {
+        params.delete("sort");
+      }
+
+      const parent = document.querySelector<HTMLUListElement>(".posts");
+      const existingKeys = parent?.children
+        ? Array.from(parent.children).map(
+            (li) => (li as HTMLLIElement).dataset.articleId
+          )
+        : [];
+
+      if (existingKeys.toString() !== posts.map((post) => post.id).toString()) {
+        parent?.replaceChildren(...posts.map((post) => post.element));
+      }
+
+      parent?.classList.remove("loading");
+
+      let state = window.location.pathname;
+      let paramsStr = params.toString();
+      if (paramsStr) {
+        state += "?" + paramsStr;
+      }
+      window.history.pushState({}, "", state);
+    }
+
+    searchText?.addEventListener("input", () => {
+      runSearch(searchItems(), searchText.value, searchSort?.value);
+    });
+
+    searchSort?.addEventListener("change", () => {
+      runSearch(searchItems(), searchText?.value, searchSort.value);
+    });
+
+    // get params
+    const params = new URLSearchParams(window.location.search);
+    const search = params.get("search") || undefined;
+    const sort = params.get("sort") || undefined;
+    if (searchText && search) {
+      searchText.value = search;
+    }
+    if (searchSort && sort) {
+      searchSort.value = sort;
+    }
+    runSearch(searchItems(), search, sort);
+  </script>
+</div>

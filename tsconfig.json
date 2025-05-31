@@ -3,6 +3,14 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "$consts": ["src/consts"],
+      "$content/*": ["src/content/*"],
+      "$components/*": ["src/components/*"],
+      "$layouts/*": ["src/layouts/*"],
+      "$styles/*": ["src/styles/*"]
+    }
   }
 }
