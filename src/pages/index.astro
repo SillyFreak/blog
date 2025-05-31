@@ -1,5 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
+import { blogEntries, blogEntryUrl } from '$lib/blog';
+import { SITE_TITLE, SITE_DESCRIPTION } from '$lib/consts';
 
 import TagList from '$components/TagList.astro';
 import Search from '$components/Search.astro';
@@ -11,7 +12,7 @@ import Header from '$components/Header.astro';
 
 import '$styles/IndexPostList.css';
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await blogEntries()).sort(
   (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
 );
 ---
@@ -19,7 +20,7 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title="{kSiteTitle}" description="{kSiteDescription}" />
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
       .posts.loading {
         display: none;
@@ -45,7 +46,7 @@ const posts = (await getCollection('blog')).sort(
           {
             posts.map((post) => (
               <li data-article-id={post.id} data-article-meta={JSON.stringify(post.data)}>
-                <a class="heading" href={`/${post.id}/`}>
+                <a class="heading" href={blogEntryUrl(post)}>
                   <h2>
                     <span class="title">{post.data.title}</span>
                   </h2>
