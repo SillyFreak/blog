@@ -1,0 +1,37 @@
+---
+import { type BlogEntry, type BlogMeta, blogEntryUrl } from '$lib/blog';
+
+import FormattedDate from '$components/FormattedDate.astro';
+import TagList from '$components/TagList.astro';
+
+type Post = (
+  { post: BlogEntry; link: true; } |
+  { post: BlogMeta; link?: false; }
+);
+
+type Props = Post & {
+  showEdited?: boolean;
+};
+
+const {
+  post,
+  link,
+  showEdited = false,
+} = Astro.props;
+
+const data: BlogMeta = link? post.data : post;
+---
+
+<h1 class="text-3xl mt-6 mb-4">
+  {link && <a href={blogEntryUrl(post)}>{data.title}</a>}
+  {!link && data.title}
+</h1>
+
+<p class="my-4 text-sm italic">
+  Published <FormattedDate date={data.published} />
+  {showEdited && data.edited !== undefined && (
+    <Fragment> &centerdot; Last edited <FormattedDate date={data.edited} /></Fragment>
+  )}
+</p>
+
+<TagList tags={data.tags} />

@@ -3,11 +3,11 @@ import { type BlogMeta } from '$lib/blog';
 
 import Page from '$layouts/Page.astro';
 
-import FormattedDate from '$components/FormattedDate.astro';
-import TagList from '$components/TagList.astro';
+import PostMeta from '$components/PostMeta.astro';
 
 type Props = BlogMeta;
 
+const post = Astro.props;
 const { title, author, description, published, edited, tags, heroImage } = Astro.props;
 ---
 
@@ -25,16 +25,7 @@ const { title, author, description, published, edited, tags, heroImage } = Astro
   </style>
   <main>
     <article>
-      <h1 class="text-3xl mt-6 mb-4">{title}</h1>
-
-      <p class="my-4 text-sm italic">
-        Published <FormattedDate date={published} />
-        {edited !== undefined && (
-          <Fragment> &centerdot; Last edited <FormattedDate date={edited} /></Fragment>
-        )}
-      </p>
-
-      <TagList {tags} />
+      <PostMeta {post} showEdited />
 
       <div>
         {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}

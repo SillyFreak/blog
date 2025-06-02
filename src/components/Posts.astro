@@ -3,6 +3,7 @@ import { type BlogEntry, blogEntryUrl } from '$lib/blog';
 
 import FormattedDate from '$components/FormattedDate.astro';
 import TagList from '$components/TagList.astro';
+import PostMeta from './PostMeta.astro';
 
 interface Props {
   posts: BlogEntry[];
@@ -15,13 +16,7 @@ const { posts } = Astro.props;
   {
     posts.map((post) => (
       <li class="block m-0">
-        <h1 class="text-3xl mt-6 mb-4">
-          <a href={blogEntryUrl(post)}>{post.data.title}</a>
-        </h1>
-
-        <p class="my-4 text-sm italic">Published <FormattedDate date={post.data.published} /></p>
-
-        <TagList tags={post.data.tags} />
+        <PostMeta {post} link />
       </li>
     ))
   }
