@@ -6,3 +6,23 @@
 
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+.prose {
+  --prose-code-bg: #f5f2f0;
+
+  @apply prose-pre:bg-(--prose-code-bg) prose-pre:text-(--tw-prose-body);
+  @apply
+    prose-code:-m-0.5 prose-code:p-0.5
+    prose-code:font-normal
+    prose-code:bg-(--prose-code-bg) prose-code:rounded-xs;
+
+  code {
+    &::before {
+      content: none;
+    }
+
+    &::after {
+      content: none;
+    }
+  }
+}
