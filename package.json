@@ -15,8 +15,11 @@
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
     "@myriaddreamin/typst-ts-node-compiler": "^0.6.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.8",
     "astro": "^5.8.1",
-    "astro-typst": "^0.9.2"
+    "astro-typst": "^0.9.2",
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.28.0",
