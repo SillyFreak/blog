@@ -1,14 +1,12 @@
 ---
 import { blogEntries, blogEntryUrl } from '$lib/blog';
-import { SITE_TITLE, SITE_DESCRIPTION } from '$lib/consts';
+
+import Base from '$layouts/Base.astro';
 
 import TagList from '$components/TagList.astro';
 import Search from '$components/Search.astro';
 
-import BaseHead from '$components/BaseHead.astro';
-import Footer from '$components/Footer.astro';
 import FormattedDate from '$components/FormattedDate.astro';
-import Header from '$components/Header.astro';
 
 import '$styles/IndexPostList.css';
 
@@ -17,56 +15,48 @@ const posts = (await blogEntries()).sort(
 );
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      .posts.loading {
-        display: none;
+<Base>
+  <style slot="head">
+    .posts.loading {
+      display: none;
+    }
+    main.search-enabled {
+      padding-top: 0;
+    }
+    /*  */
+    @media (max-width: 600px) {
+      .heading {
+        display: flex;
+        flex-direction: column;
       }
-      main.search-enabled {
-        padding-top: 0;
-      }
-      /*  */
-      @media (max-width: 600px) {
-        .heading {
-          display: flex;
-          flex-direction: column;
+    }
+  </style>
+  <Search />
+  <main class="search-enabled">
+    <section>
+      <ul class="accent block-list posts loading">
+        {
+          posts.map((post) => (
+            <li data-article-id={post.id} data-article-meta={JSON.stringify(post.data)}>
+              <a class="heading" href={blogEntryUrl(post)}>
+                <h2>
+                  <span class="title">{post.data.title}</span>
+                </h2>
+                <span class="date">
+                  <FormattedDate date={post.data.published} />
+                </span>
+              </a>
+              {post.data.tags && <TagList tags={post.data.tags} />}
+              {post.data.description || ''}
+            </li>
+          ))
         }
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <Search />
-    <main class="search-enabled">
-      <section>
-        <ul class="accent block-list posts loading">
-          {
-            posts.map((post) => (
-              <li data-article-id={post.id} data-article-meta={JSON.stringify(post.data)}>
-                <a class="heading" href={blogEntryUrl(post)}>
-                  <h2>
-                    <span class="title">{post.data.title}</span>
-                  </h2>
-                  <span class="date">
-                    <FormattedDate date={post.data.published} />
-                  </span>
-                </a>
-                {post.data.tags && <TagList tags={post.data.tags} />}
-                {post.data.description || ''}
-              </li>
-            ))
-          }
-        </ul>
-        <script is:inline>
-          if (!window.location.search) {
-            document.querySelector('.posts').classList.remove('loading');
-          }
-        </script>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+      </ul>
+      <script is:inline>
+        if (!window.location.search) {
+          document.querySelector('.posts').classList.remove('loading');
+        }
+      </script>
+    </section>
+  </main>
+</Base>
