@@ -1,7 +1,7 @@
 ---
 import { blogEntries, blogEntryUrl } from '$lib/blog';
 
-import Base from '$layouts/Base.astro';
+import Page from '$layouts/Page.astro';
 
 import TagList from '$components/TagList.astro';
 import Search from '$components/Search.astro';
@@ -15,48 +15,31 @@ const posts = (await blogEntries()).sort(
 );
 ---
 
-<Base>
-  <style slot="head">
-    .posts.loading {
-      display: none;
-    }
-    main.search-enabled {
-      padding-top: 0;
-    }
-    /*  */
-    @media (max-width: 600px) {
-      .heading {
-        display: flex;
-        flex-direction: column;
-      }
-    }
-  </style>
-  <Search />
-  <main class="search-enabled">
+<Page>
+  <main>
+    <p class="my-4">Guess what, this is my blog.</p>
     <section>
-      <ul class="accent block-list posts loading">
+      <ul class="m-0 flex flex-col flex-wrap gap-1">
         {
           posts.map((post) => (
-            <li data-article-id={post.id} data-article-meta={JSON.stringify(post.data)}>
-              <a class="heading" href={blogEntryUrl(post)}>
-                <h2>
-                  <span class="title">{post.data.title}</span>
-                </h2>
-                <span class="date">
-                  <FormattedDate date={post.data.published} />
-                </span>
-              </a>
-              {post.data.tags && <TagList tags={post.data.tags} />}
-              {post.data.description || ''}
+            <li class="block m-0">
+              <h1 class="text-3xl mt-6 mb-4">
+                <a href={blogEntryUrl(post)}>{post.data.title}</a>
+              </h1>
+
+              <p class="my-4 text-sm italic">Published <FormattedDate date={post.data.published} /></p>
+
+              <ul class="text-sm m-0 flex flex-wrap gap-1">
+                {post.data.tags !== undefined && post.data.tags.map(tag => (
+                  <li class="m-0">
+                    <a href={`/tags/${tag.toLowerCase()}`} class="bg-gray-200 rounded-xs px-1">{tag}</a>
+                  </li>
+                ))}
+              </ul>
             </li>
           ))
         }
       </ul>
-      <script is:inline>
-        if (!window.location.search) {
-          document.querySelector('.posts').classList.remove('loading');
-        }
-      </script>
     </section>
   </main>
-</Base>
+</Page>

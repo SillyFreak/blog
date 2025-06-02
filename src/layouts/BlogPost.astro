@@ -1,7 +1,7 @@
 ---
 import { type BlogMeta } from '$lib/blog';
 
-import Base from '$layouts/Base.astro';
+import Page from '$layouts/Page.astro';
 
 import FormattedDate from '$components/FormattedDate.astro';
 
@@ -10,29 +10,8 @@ type Props = BlogMeta;
 const { title, author, description, published, edited, tags, heroImage } = Astro.props;
 ---
 
-<Base title={title} description={description}>
-  <style slot="head">
-    main {
-      width: calc(100% - 2em);
-      max-width: 100%;
-      margin: 0;
-    }
-    .hero-image {
-      width: 100%;
-    }
-    .hero-image img {
-      display: block;
-      margin: 0 auto;
-      border-radius: 12px;
-      box-shadow: var(--box-shadow);
-    }
-    .prose {
-      width: 720px;
-      max-width: calc(100% - 2em);
-      margin: auto;
-      padding: 1em;
-      color: rgb(var(--gray-dark));
-    }
+<Page title={title} description={description}>
+  <style>
     .title {
       margin-bottom: 1em;
       padding: 1em 0;
@@ -42,36 +21,33 @@ const { title, author, description, published, edited, tags, heroImage } = Astro
     .title h1 {
       margin: 0 0 0.5em 0;
     }
-    .date {
-      margin-bottom: 0.5em;
-      color: rgb(var(--gray));
-    }
-    .last-updated-on {
-      font-style: italic;
-    }
   </style>
   <main>
     <article>
-      <div class="hero-image">
+      <h1 class="text-3xl mt-6 mb-4">{title}</h1>
+
+      <p class="my-4 text-sm italic">
+        Published <FormattedDate date={published} />
+        {edited !== undefined && (
+          <Fragment> &centerdot; Last edited <FormattedDate date={edited} /></Fragment>
+        )}
+      </p>
+
+      <ul class="text-sm m-0 flex flex-wrap gap-1">
+        {tags !== undefined && tags.map(tag => (
+          <li class="m-0">
+            <a href={`/tags/${tag.toLowerCase()}`} class="bg-gray-200 rounded-xs px-1">{tag}</a>
+          </li>
+        ))}
+      </ul>
+
+      <div>
         {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
       </div>
-      <div class="prose">
-        <div class="title">
-          <div class="date">
-            <FormattedDate date={published} />
-            {
-              edited && (
-                <div class="last-updated-on">
-                  Last updated on <FormattedDate date={edited} />
-                </div>
-              )
-            }
-          </div>
-          <h1>{title}</h1>
-          <hr />
-        </div>
+
+      <div class="prose max-w-none">
         <slot />
       </div>
     </article>
   </main>
-</Base>
+</Page>

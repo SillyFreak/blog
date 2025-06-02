@@ -1,0 +1,21 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from '$lib/consts';
+
+import Base from '$layouts/Base.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+	title = SITE_TITLE,
+	description = SITE_DESCRIPTION,
+} = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <div class="mx-2 sm:mx-4 md:mx-auto md:w-[45rem] lg:w-[56rem] mt-8 mb-16">
+    <slot />
+  </div>
+</Base>
