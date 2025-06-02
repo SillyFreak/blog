@@ -4,6 +4,7 @@ import { type BlogMeta } from '$lib/blog';
 import Page from '$layouts/Page.astro';
 
 import FormattedDate from '$components/FormattedDate.astro';
+import TagList from '$components/TagList.astro';
 
 type Props = BlogMeta;
 
@@ -33,13 +34,7 @@ const { title, author, description, published, edited, tags, heroImage } = Astro
         )}
       </p>
 
-      <ul class="text-sm m-0 flex flex-wrap gap-1">
-        {tags !== undefined && tags.map(tag => (
-          <li class="m-0">
-            <a href={`/tags/${tag.toLowerCase()}`} class="bg-gray-200 rounded-xs px-1">{tag}</a>
-          </li>
-        ))}
-      </ul>
+      <TagList {tags} />
 
       <div>
         {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
