@@ -10,7 +10,7 @@ interface Props {
   image?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteUrl = (url: string | URL) => new URL(url, Astro.site);
 
 const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 ---
@@ -24,7 +24,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
   rel="alternate"
   type="application/rss+xml"
   title={SITE_TITLE}
-  href={new URL('rss.xml', Astro.site)}
+  href={siteUrl('rss.xml')}
 />
 <meta name="generator" content={Astro.generator} />
 
@@ -33,7 +33,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
 
 <!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
+<link rel="canonical" href={siteUrl(Astro.url.pathname)} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -45,11 +45,11 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={siteUrl(image)} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={siteUrl(image)} />
