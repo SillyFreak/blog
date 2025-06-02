@@ -5,8 +5,6 @@ import Page from '$layouts/Page.astro';
 
 import Posts from '$components/Posts.astro';
 
-import '$styles/IndexPostList.css';
-
 const posts = (await blogEntries()).sort(
   (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
 );
