@@ -1,3 +1,10 @@
+#import "@preview/zebraw:0.5.5": zebraw
+
+#let zebraw = zebraw.with(
+  block-width: 100%,
+  wrap: false,
+)
+
 #let blog-post(
   title: none,
   author: none,
@@ -20,7 +27,7 @@
   )) <frontmatter>]
 
   show: rest => context {
-    import "@preview/zebraw:0.5.5": zebraw-init, zebraw
+    import "@preview/zebraw:0.5.5": zebraw-init
 
     set page(height: auto, margin: 1cm) if target() == "paged"
 
@@ -34,10 +41,7 @@
       lang: false,
       numbering: false,
     )
-    show: zebraw.with(
-      block-width: 100%,
-      wrap: false,
-    )
+    show: zebraw
     rest
   }
 
