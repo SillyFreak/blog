@@ -1,11 +1,13 @@
-#metadata((
+#import "/template/blog-post.typ": *
+
+#show: blog-post(
   title: "Calling Superclass Methods",
   author: "SillyFreak",
   description: "Calling Superclass Methods",
   published: "2022-01-21",
   edited: "2022-01-22",
   tags: ("java",),
-)) <frontmatter>
+)
 
 // excerpt: A common mistake I see Java beginners make is to call methods like `super.foo()` indiscriminate when subclassing is involved. However, there's a subtle difference between that and regular method calls.
 
@@ -98,7 +100,7 @@ class B {
 
 If we compile this and then look at `B`'s bytecode:
 
-```shell
+```sh
 javac *.java
 javap -c B.class
 ```
