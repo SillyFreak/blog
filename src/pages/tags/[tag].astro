@@ -38,7 +38,7 @@ const { tag, posts } = Astro.props;
 
 <Page>
   <main>
-    <p class="my-4">Posts tagged <code>java</code></p>
+    <p class="my-4">Posts tagged <code>{tag}</code></p>
     <section>
       <Posts {posts} />
     </section>
