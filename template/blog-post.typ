@@ -22,6 +22,8 @@
   show: rest => context {
     import "@preview/zebraw:0.5.5": zebraw-init, zebraw
 
+    set page(height: auto, margin: 1cm) if target() == "paged"
+
     if target() == "html" {
       zebraw-init = zebraw-init.with(
         inset: (top: 0em, right: 0.34em, bottom: 0em, left: 0.34em),
@@ -39,6 +41,17 @@
     rest
   }
 
+  context if target() == "paged" [
+    = #title
+
+    #published #if edited != none [#sym.dot #edited]
+
+    #tags.join[ #sym.dot ]
+
+    #eval(excerpt.text, mode: "markup")
+
+    #line(length: 100%)
+  ]
 
   body
 }
