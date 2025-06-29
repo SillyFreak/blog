@@ -1,6 +1,8 @@
 ---
 import { type BlogEntry, type BlogMeta, blogEntryUrl } from '$lib/blog';
 
+import { renderToHTML } from "astro-typst/src/lib/typst";
+
 import FormattedDate from '$components/FormattedDate.astro';
 import TagList from '$components/TagList.astro';
 
@@ -22,6 +24,8 @@ const {
 } = Astro.props;
 
 const data: BlogMeta = link? post.data : post;
+
+const excerpt = (data.excerpt && showExcerpt) ? (await renderToHTML({ mainFileContent: data.excerpt, body: true }, null)).html : null;
 ---
 
 <h1 class="text-3xl mt-6 mb-4">
@@ -36,10 +40,8 @@ const data: BlogMeta = link? post.data : post;
   )}
 </p>
 
-{data.excerpt && showExcerpt && (
-  <p class="my-2">
-    {data.excerpt}
-  </p>
+{excerpt && (
+  <div class="prose max-w-none" set:html={excerpt} />
 )}
 
 <TagList tags={data.tags} />
