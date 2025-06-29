@@ -19,7 +19,7 @@ export function blogEntrySlugParts(entry: BlogEntry): BlogSlugParts {
 	const yyyy = String(published.getUTCFullYear()).padStart(4, '0');
 	const mm = String(published.getUTCMonth() + 1).padStart(2, '0');
 	const dd = String(published.getUTCDate()).padStart(2, '0');
-	const slug = entry.id.split('-', 2).pop()!;
+	const slug = entry.id.substring(entry.id.indexOf("-") + 1);
 	return { yyyy, mm, dd, slug };
 }
 
