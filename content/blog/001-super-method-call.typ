@@ -7,9 +7,10 @@
   published: "2022-01-21",
   edited: "2022-01-22",
   tags: ("java",),
+	excerpt: ```typ
+	A common mistake I see Java beginners make is to call methods like `super.foo()` indiscriminate when subclassing is involved. However, there's a subtle difference between that and regular method calls.
+	```,
 )
-
-// excerpt: A common mistake I see Java beginners make is to call methods like `super.foo()` indiscriminate when subclassing is involved. However, there's a subtle difference between that and regular method calls.
 
 When creating a subclass, a common situation is to overwrite a method, but using the original class' logic in doing so.
 Let's say we have a class for sending messages, and we want to make a variant that is written in a more formal style.

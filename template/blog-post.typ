@@ -5,6 +5,7 @@
   published: none,
   edited: none,
   tags: none,
+  excerpt: none,
 ) = body => {
   let target = dictionary(std).at("target", default: () => "paged")
 
@@ -15,6 +16,7 @@
     published: published,
     edited: edited,
     tags: tags,
+    excerpt: if excerpt != none { excerpt.text },
   )) <frontmatter>]
 
   show: rest => context {

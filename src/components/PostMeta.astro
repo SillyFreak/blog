@@ -11,12 +11,14 @@ type Post = (
 
 type Props = Post & {
   showEdited?: boolean;
+  showExcerpt?: boolean;
 };
 
 const {
   post,
   link,
   showEdited = false,
+  showExcerpt = false,
 } = Astro.props;
 
 const data: BlogMeta = link? post.data : post;
@@ -33,5 +35,11 @@ const data: BlogMeta = link? post.data : post;
     <Fragment> &centerdot; Last edited <FormattedDate date={data.edited} /></Fragment>
   )}
 </p>
+
+{data.excerpt && showExcerpt && (
+  <p class="my-2">
+    {data.excerpt}
+  </p>
+)}
 
 <TagList tags={data.tags} />

@@ -16,7 +16,7 @@ const { posts } = Astro.props;
   {
     posts.map((post) => (
       <li class="block m-0">
-        <PostMeta {post} link />
+        <PostMeta {post} link showExcerpt />
       </li>
     ))
   }
