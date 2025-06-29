@@ -1,0 +1,46 @@
+---
+import { type BlogEntry, blogEntries, blogEntryUrl } from '$lib/blog';
+
+import Page from '$layouts/Page.astro';
+
+import Posts from '$components/Posts.astro';
+
+export async function getStaticPaths() {
+	function hasTag(entry: BlogEntry, tag: string): boolean {
+		return entry.data.tags !== undefined && entry.data.tags.includes(tag);
+	}
+
+  const posts = await blogEntries();
+	const tags = new Set<string>();
+	for (const post of posts) {
+		if (post.data.tags !== undefined) {
+			for (const tag of post.data.tags) {
+				tags.add(tag);
+			}
+		}
+	}
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: {
+			tag,
+			posts: posts.filter((post) => hasTag(post, tag)),
+		},
+  }));
+}
+
+type Props = {
+	tag: string;
+	posts: BlogEntry[];
+};
+
+const { tag, posts } = Astro.props;
+---
+
+<Page>
+  <main>
+    <p class="my-4">Posts tagged <code>java</code></p>
+    <section>
+      <Posts {posts} />
+    </section>
+  </main>
+</Page>
