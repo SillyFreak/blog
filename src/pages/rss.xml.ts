@@ -5,7 +5,7 @@ import { blogEntries, blogEntryUrl } from '$lib/blog';
 import { SITE_TITLE, SITE_DESCRIPTION } from '$lib/consts';
 
 export const GET: APIRoute = async (context) => {
-  const posts = await blogEntries();
+  const posts = await blogEntries(post => !post.data.draft);
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,

@@ -5,7 +5,7 @@ import Page from '$layouts/Page.astro';
 
 import Posts from '$components/Posts.astro';
 
-const posts = (await blogEntries()).sort(
+const posts = (await blogEntries(post => !post.data.draft)).sort(
   (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
 );
 ---

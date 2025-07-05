@@ -25,7 +25,7 @@ export async function getStaticPaths() {
     params: { tag },
     props: {
       tag,
-      posts: posts.filter((post) => hasTag(post, tag)),
+      posts: posts.filter((post) => !post.data.draft && hasTag(post, tag)),
     },
   }));
 }

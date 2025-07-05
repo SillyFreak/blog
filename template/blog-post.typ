@@ -11,6 +11,7 @@
   description: none,
   published: none,
   edited: none,
+  draft: false,
   tags: none,
   excerpt: none,
 ) = body => {
@@ -22,6 +23,7 @@
     description: description,
     published: published,
     edited: edited,
+    draft: draft,
     tags: tags,
     excerpt: if excerpt != none { excerpt.text },
   )) <frontmatter>]
