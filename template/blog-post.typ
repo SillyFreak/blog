@@ -59,5 +59,11 @@
     #line(length: 100%)
   ]
 
+  show: rest => context {
+    if target() != "html" { return rest }
+    show figure: it => html.elem("figure", html.frame(it.body))
+    rest
+  }
+
   body
 }

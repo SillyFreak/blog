@@ -25,4 +25,8 @@
       content: none;
     }
   }
+
+  figure {
+    @apply flex place-content-center;
+  }
 }
