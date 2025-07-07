@@ -18,7 +18,7 @@ All typesetting and word processing systems at one point face a problem in one w
 #figure({
   import "@preview/fletcher:0.5.8": diagram, node, edge
 
-  set text(0.85em, font: "FreeSans",)
+  set text(0.8em, font: "Liberation Sans",)
   diagram(node-shape: circle, {
     let node = node.with(radius: 1.35cm, stroke: 0.5pt)
     node((150deg, 1.7cm), name: <a>)[we need to render the outline, so ...]
@@ -42,15 +42,45 @@ In all of these cases, there is an underlying assumption: updating the document'
 
 #raw(block: true, lang: "typ", read("assets/003/outline-1.typ").trim())
 
-Three things are important here:
+Four things are important here:
 
-- the width of the page is chosen so the heading fits barely in one line in the outline
+- the width of the page is chosen so the outline entry fits barely in one line
+- the position of the outline is chosen so the heading fits barely on the page
 - the page numbering uses roman numerals
 - this appears on page "iv", which is followed by "v" -- and the latter numeral takes less space than the former!
 
 The effect is that these two results are possible:
 
-Either, the outline entry fits in one line, but that line wrongly says the heading is on page "v"; or it breaks into a second line, shifting the heading to page "v", to accomodate for page number "iv"! Your document will give you one of the two -- and a warning: "Layout did not converge within 5 attempts".
+#figure({
+  import "@preview/shadowed:0.2.0": shadowed
+
+  let pg(path) = shadowed(shadow: 2mm, image(path))
+
+  grid(
+    columns: 2,
+    gutter: 1em,
+    {
+      show: block.with(fill: gray.lighten(50%))
+      // the page is 70mm tall, 74mm with shadow
+      pg("assets/003/outline-1.svg")
+    },
+    {
+      show: block.with(fill: gray.lighten(50%), inset: (y: 2mm))
+      block(clip: true, {
+        set block(spacing: 1mm)
+        // the page is 74mm-32mm = 42mm tall
+        v(-30mm)
+        pg("assets/003/outline-2-p1.svg")
+        // the image is 74mm-47cm = 27mm tall
+        pg("assets/003/outline-2-p2.svg")
+        v(-49mm)
+        // in total this block is 2*74mm-79mm+1mm+2*2mm = 74mm tall
+      })
+    },
+  )
+})
+
+Either, the outline entry fits in one line, but that line wrongly says the heading is on page "v"; or, when trying to accomodate for page number "iv", it breaks into a second line, shifting the heading to page "v"! Your document will give you one of the two -- and a warning: "Layout did not converge within 5 attempts".
 
 == Leaving outlines behind
 

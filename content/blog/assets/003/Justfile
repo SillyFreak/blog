@@ -1,0 +1,3 @@
+compile:
+	typst c outline-1.typ outline-1.svg
+	typst c outline-2.typ outline-2-p{p}.svg
