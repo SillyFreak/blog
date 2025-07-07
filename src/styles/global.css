@@ -26,6 +26,14 @@
     }
   }
 
+  :where(blockquote p:first-of-type)::before {
+    content: none;
+  }
+
+  :where(blockquote p:last-of-type)::after {
+    content: none;
+  }
+
   figure {
     @apply flex place-content-center;
   }
