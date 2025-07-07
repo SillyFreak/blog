@@ -1,12 +1,11 @@
 #import "/template/blog-post.typ": *
 
 #show: blog-post(
-  title: "Typst's dreaded \"Layout did not converge\" error",
+  title: "Typst's dreaded \"Layout did not converge\" warning",
   author: "SillyFreak",
   description: "Rewrite it (the Blog) in Typst",
-  published: "2025-07-05",
-  // edited: "2025-07-05",
-  draft: true,
+  published: "2025-07-07",
+  // edited: "2025-07-07",
   tags: ("typst",),
 	excerpt: ```typ
   If you've dabbled in writing more complex Typst code, you may have encountered the "Layout did not converge within 5 attempts" warning. What does it mean and what can you do?
