@@ -32,6 +32,7 @@
     import "@preview/zebraw:0.5.5": zebraw-init
 
     set page(height: auto, margin: 1cm) if target() == "paged"
+    set figure(numbering: none)
 
     if target() == "html" {
       zebraw-init = zebraw-init.with(
@@ -61,7 +62,10 @@
 
   show: rest => context {
     if target() != "html" { return rest }
-    show figure: it => html.elem("figure", html.frame(it.body))
+    show figure: it => html.elem("figure", attrs: (class: "flex flex-col"), {
+      html.frame(it.body)
+      it.caption
+    })
     rest
   }
 
