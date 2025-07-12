@@ -7,9 +7,9 @@
   published: "2025-07-07",
   // edited: "2025-07-07",
   tags: ("typst",),
-	excerpt: ```typ
+  excerpt: ```typ
   If you've dabbled in writing more complex Typst code, you may have encountered the "Layout did not converge within 5 attempts" warning. What does it mean and what can you do?
-	```,
+  ```,
 )
 
 All typesetting and word processing systems at one point face a problem in one way or another: if your document should have an outline, you need to somehow know what headings appear on what pages in your document, and then you need to insert that outline into the document itself:

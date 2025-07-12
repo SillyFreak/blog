@@ -7,9 +7,9 @@
   published: "2022-01-21",
   edited: "2022-01-22",
   tags: ("java",),
-	excerpt: ```typ
-	A common mistake I see Java beginners make is to call methods like `super.foo()` indiscriminate when subclassing is involved. However, there's a subtle difference between that and regular method calls.
-	```,
+  excerpt: ```typ
+  A common mistake I see Java beginners make is to call methods like `super.foo()` indiscriminate when subclassing is involved. However, there's a subtle difference between that and regular method calls.
+  ```,
 )
 
 When creating a subclass, a common situation is to overwrite a method, but using the original class' logic in doing so.
@@ -19,28 +19,28 @@ A simple approach could look like this:
 
 ```java
 class Message {
-	private final String sender, receiver, content;
+  private final String sender, receiver, content;
 
-	// ... constructor & getters ...
+  // ... constructor & getters ...
 
-	public void send() {
-		// simple message formatting
-		System.out.println(getContent());
-	}
+  public void send() {
+    // simple message formatting
+    System.out.println(getContent());
+  }
 }
 
 class FormalMessage extends Message {
-	public FormalMessage(String sender, String receiver, String content) {
-		super(sender, receiver, content);
-	}
+  public FormalMessage(String sender, String receiver, String content) {
+    super(sender, receiver, content);
+  }
 
-	@Override
-	public void send() {
-		// formal message formatting
-		System.out.println("Dear " + super.getReceiver() + ",");
-		super.send();
-		System.out.println("Sincerely, " + super.getSender());
-	}
+  @Override
+  public void send() {
+    // formal message formatting
+    System.out.println("Dear " + super.getReceiver() + ",");
+    super.send();
+    System.out.println("Sincerely, " + super.getSender());
+  }
 }
 ```
 
@@ -51,24 +51,24 @@ Well, consider this extension:
 
 ```java
 class extends FormalIncognitoMessage {
-	public FormalIncognitoMessage(String sender, String receiver, String content) {
-		super(sender, receiver, content);
-	}
+  public FormalIncognitoMessage(String sender, String receiver, String content) {
+    super(sender, receiver, content);
+  }
 
-	@Override
-	public void getSender() {
-		return "Anonymous";
-	}
+  @Override
+  public void getSender() {
+    return "Anonymous";
+  }
 }
 ```
 
 ```java
-		Message m = new FormalIncognitoMessage("SillyFreak", "World", "Hello.");
-		m.send();
+    Message m = new FormalIncognitoMessage("SillyFreak", "World", "Hello.");
+    m.send();
 
-		// Dear World,
-		// Hello.
-		// Sincerely, SillyFreak
+    // Dear World,
+    // Hello.
+    // Sincerely, SillyFreak
 ```
 
 What happened here? Well, that `super` is not only special in an overridden method, it generally fixes the implementation of the method to use to that of the superclass.
@@ -88,14 +88,14 @@ Let's create a more simplified example for looking at this:
 
 ```java
 class A {
-	public void foo() {}
+  public void foo() {}
 }
 
 class B {
-	public void bar() {
-		this.foo();
-		super.foo();
-	}
+  public void bar() {
+    this.foo();
+    super.foo();
+  }
 }
 ```
 

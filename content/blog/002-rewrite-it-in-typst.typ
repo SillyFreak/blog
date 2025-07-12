@@ -7,9 +7,9 @@
   published: "2025-06-29",
   // edited: "2025-06-29",
   tags: ("typst", "meta"),
-	excerpt: ```typ
+  excerpt: ```typ
   Starting now, the posts you see on this blog are written with #link("https://typst.app/")[Typst] -- my current favorite tool to play and work with. In this post I'll go over the technical details of making this blog Typst-powered.
-	```,
+  ```,
 )
 
 If you know me online or in real life, it has been impossible to miss how excited about #link("https://typst.app/")[Typst] I am. I felt motivated to write about Typst on a few occasions, but the prospect of writing about that new typesetting system _not using Typst_ tempered that motivation quite a bit... Well, that excuse won't work anymore, since this blog is now Typst-based!
@@ -136,12 +136,12 @@ The final puzzle piece (so far) was rendering an excerpt or blurb on overview pa
 ````typ
 #show: blog-post(
   // ...
-	excerpt: ```typ
+  excerpt: ```typ
   Starting now, the posts you see on this blog are written with
   #link("https://typst.app/")[Typst] -- my current favorite tool to play and
   work with. In this post I'll go over the technical details of making this
   blog Typst-powered.
-	```,
+  ```,
 )
 ````
 
