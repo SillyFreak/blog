@@ -3,7 +3,7 @@
 #show: blog-post(
   title: "Typst's dreaded \"Layout did not converge\" warning",
   author: "SillyFreak",
-  description: "Rewrite it (the Blog) in Typst",
+  description: "Typst's dreaded \"Layout did not converge\" warning",
   published: "2025-07-07",
   // edited: "2025-07-07",
   tags: ("typst",),
