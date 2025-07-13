@@ -30,9 +30,11 @@
     excerpt: if excerpt != none { excerpt.text },
   )) <frontmatter>]
 
-  // paged: setup page
+  // paged: setup page, link styling
   show: show-target(paged: rest => {
     set page(height: auto, margin: 1cm)
+    show link: underline
+    show link: set text(blue.darken(40%))
     rest
   })
 
