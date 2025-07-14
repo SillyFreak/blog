@@ -10,7 +10,9 @@
 .prose {
   --prose-code-bg: #f5f5f5;
 
-  @apply prose-pre:bg-transparent prose-pre:text-(--tw-prose-body);
+  @apply
+    prose-pre:bg-transparent prose-pre:text-(--tw-prose-body)
+    prose-pre:overflow-visible;
   @apply
     prose-code:-m-0.5 prose-code:p-0.5
     prose-code:font-normal
