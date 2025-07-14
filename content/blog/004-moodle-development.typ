@@ -125,11 +125,11 @@ update_module($moduleinfo);
 
 (This actually only worked from within the web service we're doing next due to permission checks, so if you're trying this exactly as written, don't be surprised if you get access errors. You'd also need to add some imports too; better just read on.)
 
-=== Providing a webservice
+=== Providing a web service
 
 First task accomplished; the next step is to make that code available to my scripts as a web service. #link("https://moodledev.io/docs/5.0/apis/subsystems/external")[External services] live in plugins, and a #link("https://moodledev.io/docs/5.0/apis/plugintypes/local")[local plugin] is the right type for my purpose. Just like activity modules live in `mod/`, local plugins go into `local/`.
 
-I made the mistake of also consulting `local/readme.txt`, which (apart from one link updated two years ago) has last been edited #link("https://github.com/moodle/moodle/commits/v5.0.1/local/readme.txt")[in 2015] -- so don't do that! It recommends some outdated practices such as using an `externallib.php` file instead of individual classes per webservice function.
+I made the mistake of also consulting `local/readme.txt`, which (apart from one link updated two years ago) has last been edited #link("https://github.com/moodle/moodle/commits/v5.0.1/local/readme.txt")[in 2015] -- so don't do that! It recommends some outdated practices such as using an `externallib.php` file instead of individual classes per web service function.
 
 Likewise, be aware that the external services documentation page links to a few resources on https://docs.moodle.org/dev/, which is by its own statements no longer maintained (the newer developer docs are hosted under https://moodledev.io/). While for example the list of #link("https://docs.moodle.org/dev/Web_service_API_functions")[web service API functions] is still useful and isn't missing anything I could have used, keep that in mind when navigating the docs.
 
@@ -226,7 +226,7 @@ Just to be clear -- this code is _not_ cleaned up yet. Obviously I'm not even ta
 
 === Setting up a testing environment
 
-I'm telling you that all this works, but I haven't shown you how to run it yet. There's still a bit of Moodle configuration (creating a user, enabling the webservice, etc.) necessary before using the web service. I'm not a fan of doing that manually, especially when I don't necessarily want to keep the Moodle Docker containers around and would have to repeat the settings. So here is one final PHP script based on #link("https://gist.github.com/timhunt/51987ad386faca61fe013904c242e9b4")[a gist by Tim Hunt]:
+I'm telling you that all this works, but I haven't shown you how to run it yet. There's still a bit of Moodle configuration (creating a user, enabling the web service, etc.) necessary before using the web service. I'm not a fan of doing that manually, especially when I don't necessarily want to keep the Moodle Docker containers around and would have to repeat the settings. So here is one final PHP script based on #link("https://gist.github.com/timhunt/51987ad386faca61fe013904c242e9b4")[a gist by Tim Hunt]:
 
 ```php
 <?php
@@ -316,7 +316,7 @@ What all these scripts have not set up is the actual course and page. So you'll 
 - log in as the admin user
 - create a new course
 - add the test user to the course with the teacher role
-- create a page resource in that course, and note down the ID shown in the URL (if it's the firt on this Moodle instance, the ID should be 2)
+- create a page resource in that course, and note down the ID shown in the URL (if it's the first on this Moodle instance, the ID should be 2)
 
 == Putting the new service to use
 
@@ -339,7 +339,7 @@ print(result)
 
 == Conclusion
 
-This was a fairly long post, but we also covered a lot of ground. Moodle is a big piece of software, and while it didn't have the feature I needed (editing resources via a web API) out of the box, one thing that Moodle does really well is allowing you to add your own functionality in the form of plugins -- the #link("https://moodledev.io/docs/5.0/apis/plugintypes")[Plugin Types] page lists _dozens_ of kinds of plugins. We implemented one plugin of the `local` type, and offered a webservice through it.
+This was a fairly long post, but we also covered a lot of ground. Moodle is a big piece of software, and while it didn't have the feature I needed (editing resources via a web API) out of the box, one thing that Moodle does really well is allowing you to add your own functionality in the form of plugins -- the #link("https://moodledev.io/docs/5.0/apis/plugintypes")[Plugin Types] page lists _dozens_ of kinds of plugins. We implemented one plugin of the `local` type, and offered a web service through it.
 
 Moodle's documentation can be lacking at times, but since it's open source software, you can still get the information at least. I can't imagine how I would have figured out how the `update_module` function treats its arguments without looking at the source code, for example. I also can't imagine many pieces of software where the documentation would have been detailed enough to figure that out, so yay open source!
 

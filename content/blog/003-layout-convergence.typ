@@ -5,7 +5,7 @@
   author: "SillyFreak",
   description: "Typst's dreaded \"Layout did not converge\" warning",
   published: "2025-07-07",
-  // edited: "2025-07-07",
+  edited: "2025-07-14",
   tags: ("typst",),
   excerpt: ```typ
   If you've dabbled in writing more complex Typst code, you may have encountered the "Layout did not converge within 5 attempts" warning. What does it mean and what can you do?
@@ -79,7 +79,7 @@ The effect is that these two results are possible:
   )
 })
 
-Either, the outline entry fits in one line, but that line wrongly says the heading is on page "v"; or, when trying to accomodate for page number "iv", it breaks into a second line, shifting the heading to page "v"! Your document will give you one of the two -- and a warning: "Layout did not converge within 5 attempts".
+Either, the outline entry fits in one line, but that line wrongly says the heading is on page "v"; or, when trying to accommodate for page number "iv", it breaks into a second line, shifting the heading to page "v"! Your document will give you one of the two -- and a warning: "Layout did not converge within 5 attempts".
 
 == Leaving outlines behind
 
