@@ -17,7 +17,7 @@
 ) = body => {
   import "@preview/zebraw:0.5.5": zebraw-init
 
-  import "utils.typ": *
+  import "@preview/bullseye:0.1.0": *
 
   [#metadata((
     title: title,
