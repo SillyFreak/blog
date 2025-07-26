@@ -1,4 +1,4 @@
-#import "@preview/zebraw:0.5.5": zebraw
+#import "libs.typ": zebraw.zebraw
 
 #let zebraw = zebraw.with(
   block-width: 100%,
@@ -15,9 +15,10 @@
   tags: none,
   excerpt: none,
 ) = body => {
-  import "@preview/zebraw:0.5.5": zebraw-init
-
-  import "@preview/bullseye:0.1.0": *
+  import "libs.typ": (
+    zebraw.zebraw-init,
+    bullseye.show-target, bullseye.on-target,
+  )
 
   [#metadata((
     title: title,
