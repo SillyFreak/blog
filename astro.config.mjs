@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://blog.sillyfreak.space',
+  site: 'https://blog.ensko.at',
   base: '/',
 
   // Whether to prefetch links while hovering.
