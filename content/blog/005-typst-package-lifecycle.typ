@@ -2,7 +2,7 @@
 
 #show: blog-post(
   title: "The Typst Package Lifecycle",
-  author: "SillyFreak",
+  author: "ensko",
   description: "The Typst Package Lifecycle",
   published: "2025-08-15",
   // edited: "2025-08-15",

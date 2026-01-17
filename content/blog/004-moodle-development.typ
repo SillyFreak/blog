@@ -2,7 +2,7 @@
 
 #show: blog-post(
   title: "Forays into Moodle development",
-  author: "SillyFreak",
+  author: "ensko",
   description: "Forays into Moodle development",
   published: "2025-07-14",
   // edited: "2025-07-14",

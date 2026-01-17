@@ -2,10 +2,10 @@
 
 #show: blog-post(
   title: "Calling Superclass Methods",
-  author: "SillyFreak",
+  author: "ensko",
   description: "Calling Superclass Methods",
   published: "2022-01-21",
-  edited: "2022-01-22",
+  edited: "2026-01-17",
   tags: ("java",),
   excerpt: ```typ
   A common mistake I see Java beginners make is to call methods like `super.foo()` indiscriminate when subclassing is involved. However, there's a subtle difference between that and regular method calls.
@@ -63,12 +63,12 @@ class extends FormalIncognitoMessage {
 ```
 
 ```java
-    Message m = new FormalIncognitoMessage("SillyFreak", "World", "Hello.");
+    Message m = new FormalIncognitoMessage("ensko", "World", "Hello.");
     m.send();
 
     // Dear World,
     // Hello.
-    // Sincerely, SillyFreak
+    // Sincerely, ensko
 ```
 
 What happened here? Well, that `super` is not only special in an overridden method, it generally fixes the implementation of the method to use to that of the superclass.

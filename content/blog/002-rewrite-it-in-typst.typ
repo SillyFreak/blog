@@ -2,7 +2,7 @@
 
 #show: blog-post(
   title: "Rewrite it (the Blog) in Typst",
-  author: "SillyFreak",
+  author: "ensko",
   description: "Rewrite it (the Blog) in Typst",
   published: "2025-06-29",
   // edited: "2025-06-29",
