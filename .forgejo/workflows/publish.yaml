@@ -1,0 +1,19 @@
+name: Publish
+on:
+  push:
+    branches: [main]
+jobs:
+  publish:
+    runs-on: codeberg-tiny
+    steps:
+      - uses: actions/checkout@v5
+      - run: |
+          # Use your favorite static site generator here!
+          mkdir _site
+          echo "Hello World" > _site/index.html
+      - uses: actions/git-pages@v2
+        with:
+          site: https://blog.ensko.at/
+          server: grebedoc.dev
+          password: ${{ secrets.SITE_PASSWORD }}
+          source: _site/
